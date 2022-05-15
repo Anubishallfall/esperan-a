@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 
 import com.example.DesaparecidoJP.controller.endereco.dto.EnderecoDto;
 import com.example.DesaparecidoJP.controller.usuario.dto.UsuarioDto;
+import com.example.DesaparecidoJP.enums.Status;
 import com.example.DesaparecidoJP.model.Desaparecido;
 
 
@@ -18,7 +19,7 @@ public class DesaparecidoDto {
 
 	private String contato;
 
-	private String status;
+	private Status status;
 
 	private Byte foto;
 
@@ -71,7 +72,7 @@ public class DesaparecidoDto {
 		return contato;
 	}
 
-	public String getStatus() {
+	public Status getStatus() {
 		return status;
 	}
 

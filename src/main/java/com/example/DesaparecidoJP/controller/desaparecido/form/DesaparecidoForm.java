@@ -1,6 +1,7 @@
 package com.example.DesaparecidoJP.controller.desaparecido.form;
 
 import com.example.DesaparecidoJP.controller.endereco.form.EnderecoForm;
+import com.example.DesaparecidoJP.enums.Status;
 import com.example.DesaparecidoJP.model.Desaparecido;
 
 import lombok.NonNull;
@@ -14,7 +15,7 @@ public class DesaparecidoForm {
 	@NonNull
 	private String contato;
 	@NonNull
-	private String status;
+	private Status status;
 
 	private Byte foto;
 	@NonNull
@@ -52,7 +53,7 @@ public class DesaparecidoForm {
 		return contato;
 	}
 
-	public String getStatus() {
+	public Status getStatus() {
 		return status;
 	}
 	

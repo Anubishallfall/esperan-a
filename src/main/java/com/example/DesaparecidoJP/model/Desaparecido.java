@@ -10,6 +10,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 
+import com.example.DesaparecidoJP.enums.Status;
+
 @Entity
 public class Desaparecido {
 
@@ -24,7 +26,7 @@ public class Desaparecido {
 	
 	private String contato;
 	
-	private String status;
+	private Status status;
 	
 	private Byte foto;
 	
@@ -92,11 +94,11 @@ public class Desaparecido {
 		this.contato = contato;
 	}
 
-	public String getStatus() {
+	public Status getStatus() {
 		return status;
 	}
 
-	public void setStatus(String status) {
+	public void setStatus(Status status) {
 		this.status = status;
 	}
 	
