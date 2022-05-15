@@ -21,6 +21,8 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import com.example.DesaparecidoJP.controller.desaparecido.dto.DesaparecidoDto;
 import com.example.DesaparecidoJP.controller.desaparecido.form.DesaparecidoForm;
+import com.example.DesaparecidoJP.controller.desaparecido.form.DesaparecidoFormId;
+import com.example.DesaparecidoJP.enums.Status;
 import com.example.DesaparecidoJP.model.Desaparecido;
 import com.example.DesaparecidoJP.model.Usuario;
 import com.example.DesaparecidoJP.repository.IDesaparecidoRepository;
@@ -53,7 +55,16 @@ public class DesaparecidoController {
 		URI uri = uriBuilder.path("/user/{id}").buildAndExpand(desaparecido.getId()).toUri();
 		return ResponseEntity.created(uri).body(new DesaparecidoDto(desaparecido));
 	}
-	
+	@PostMapping("/encontrado")
+	@Transactional
+	public ResponseEntity<DesaparecidoDto> status(@RequestBody @Validated DesaparecidoFormId desaparecidoFormId) {
+		Usuario usuarioContexto = (Usuario) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		Optional<Desaparecido> opitional = desaparecidoRepository.findByIdAndUsuarioId(desaparecidoFormId.getId(), usuarioContexto.getId());
+		Desaparecido desaparecido = opitional.get();
+		desaparecido.setStatus(Status.ENCONTRADO);
+        return ResponseEntity.ok(new DesaparecidoDto(desaparecido));
+	}
+
 	@DeleteMapping("/{id}")
 	@Transactional
 	public ResponseEntity<?> remover(@PathVariable Long id) {
